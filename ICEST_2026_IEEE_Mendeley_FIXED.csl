@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl"
+       class="in-text"
+       version="1.0"
+       demote-non-dropping-particle="sort-only">
+  <info>
+    <title>ICEST 2026 IEEE - University of Mosul</title>
+    <title-short>ICEST 2026 IEEE</title-short>
+    <id>http://www.zotero.org/styles/icest-2026-ieee-university-of-mosul</id>
+    <link href="http://www.zotero.org/styles/icest-2026-ieee-university-of-mosul" rel="self"/>
+    <category citation-format="numeric"/>
+    <category field="engineering"/>
+    <summary>Custom IEEE-style citation format based on the ICEST 2026 template.</summary>
+    <updated>2026-09-25T09:45:00+03:00</updated>
+  </info>
+
+  <locale xml:lang="en">
+    <terms>
+      <term name="month-06" form="short">Jun.</term>
+      <term name="month-07" form="short">Jul.</term>
+      <term name="month-09" form="short">Sep.</term>
+    </terms>
+  </locale>
+
+  <macro name="author">
+    <names variable="author">
+      <name initialize-with=". "
+            delimiter=", "
+            and="text"
+            delimiter-precedes-last="never"/>
+    </names>
+  </macro>
+
+  <macro name="year">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="journal-date">
+    <date variable="issued">
+      <date-part name="month" form="short" suffix=" "/>
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="conference-date">
+    <date variable="issued">
+      <date-part name="day" suffix=" "/>
+      <date-part name="month" form="short" suffix=" "/>
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="journal">
+    <group>
+      <text variable="title" quotes="true"/>
+      <text variable="container-title" font-style="italic" prefix=", "/>
+      <text variable="volume" prefix=", Vol. "/>
+      <text variable="issue" prefix=", Issue: "/>
+      <text variable="page" prefix=", pp. "/>
+      <text macro="journal-date" prefix=", "/>
+    </group>
+  </macro>
+
+  <macro name="conference">
+    <group>
+      <text variable="title" quotes="true"/>
+      <choose>
+        <if variable="container-title">
+          <text variable="container-title" font-style="italic" prefix=", "/>
+        </if>
+        <else-if variable="event">
+          <text variable="event" font-style="italic" prefix=", "/>
+        </else-if>
+      </choose>
+      <text macro="conference-date" prefix=", "/>
+      <choose>
+        <if variable="event-place">
+          <text variable="event-place" prefix=", "/>
+        </if>
+        <else-if variable="publisher-place">
+          <text variable="publisher-place" prefix=", "/>
+        </else-if>
+      </choose>
+      <text variable="volume" prefix=", Vol. "/>
+      <text variable="page" prefix=", pp. "/>
+      <text macro="year" prefix=", "/>
+    </group>
+  </macro>
+
+  <macro name="book">
+    <group>
+      <text variable="title" quotes="true"/>
+      <text variable="publisher-place" prefix=", "/>
+      <text variable="ISBN" prefix=", ISBN 10: "/>
+      <text variable="publisher" prefix=", "/>
+      <text macro="year" prefix=", "/>
+    </group>
+  </macro>
+
+  <macro name="thesis">
+    <group>
+      <text variable="title" quotes="true"/>
+      <text variable="genre" prefix=", "/>
+      <text variable="publisher" prefix=", "/>
+      <text variable="publisher-place" prefix=", "/>
+      <text macro="year" prefix=", "/>
+    </group>
+  </macro>
+
+  <macro name="report">
+    <group>
+      <text variable="title" quotes="true"/>
+      <text variable="publisher" prefix=", "/>
+      <text variable="number" prefix=", "/>
+      <text macro="year" prefix=", "/>
+    </group>
+  </macro>
+
+  <macro name="web">
+    <group>
+      <text variable="title" quotes="true"/>
+      <text variable="container-title" prefix=", "/>
+      <text variable="URL" prefix=", "/>
+      <date variable="accessed" prefix=", accessed ">
+        <date-part name="month" form="short" suffix=" "/>
+        <date-part name="day" suffix=", "/>
+        <date-part name="year"/>
+      </date>
+    </group>
+  </macro>
+
+  <macro name="generic">
+    <group>
+      <text variable="title" quotes="true"/>
+      <text variable="container-title" font-style="italic" prefix=", "/>
+      <text variable="publisher" prefix=", "/>
+      <text macro="year" prefix=", "/>
+    </group>
+  </macro>
+
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout delimiter=", ">
+      <text variable="citation-number" prefix="[" suffix="]"/>
+    </layout>
+  </citation>
+
+  <bibliography entry-spacing="0" line-spacing="1" second-field-align="flush">
+    <layout suffix=".">
+      <text variable="citation-number" prefix="[" suffix="]"/>
+      <text macro="author" suffix=", "/>
+      <choose>
+        <if type="article-journal">
+          <text macro="journal"/>
+        </if>
+        <else-if type="paper-conference speech" match="any">
+          <text macro="conference"/>
+        </else-if>
+        <else-if type="book">
+          <text macro="book"/>
+        </else-if>
+        <else-if type="thesis">
+          <text macro="thesis"/>
+        </else-if>
+        <else-if type="report">
+          <text macro="report"/>
+        </else-if>
+        <else-if type="webpage post-weblog post" match="any">
+          <text macro="web"/>
+        </else-if>
+        <else>
+          <text macro="generic"/>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
